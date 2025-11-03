@@ -50,7 +50,7 @@ make
 
 ### 5. Clean up executables
 
-Rean `make clean` to remove executables.
+Run `make clean` to remove executables.
 
 ```bash
 make clean
