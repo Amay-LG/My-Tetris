@@ -57,7 +57,7 @@ void Board::StorePiece (int pX, int pY, int pPiece, int pRotation)
 
 /*
 ======================================
-Check if the game is over becase a piece have achived the upper position
+Check if the game is over because a piece have achived the upper position
 
 Returns true or false
 ======================================
@@ -107,7 +107,7 @@ void Board::DeletePossibleLines ()
 
 /*
 ======================================
-Returns 1 (true) if the this block of the board is empty, 0 if it is filled
+Returns true if the this block of the board is empty, false if filled
 
 Parameters:
 
@@ -152,7 +152,7 @@ int Board::GetYPosInPixels (int pPos)
 /*
 ======================================
 Check if the piece can be stored at this position without any collision
-Returns true if the movement is possible, false if it not possible
+Returns true if movement is possible, false if not possible
 
 Parameters:
 
@@ -172,15 +172,11 @@ bool Board::IsPossibleMovement (int pX, int pY, int pPiece, int pRotation)
                     return false;
                 }
             }
-            //TODO: else is from gemini
-            // else{
-                // Check if its a filled position
-                if( (j1 >= 0) && 
-                    (mPieces->GetBlockType(pPiece, pRotation, j2, i2) != 0) && 
-                    (!IsFreeBlock(i1, j1))){
-                    return false;
-                }
-            //}
+            if( (j1 >= 0) && 
+                (mPieces->GetBlockType(pPiece, pRotation, j2, i2) != 0) && 
+                (!IsFreeBlock(i1, j1))){
+                return false;
+            }
         }
     }
     return true;
