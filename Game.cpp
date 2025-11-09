@@ -23,7 +23,7 @@ Game::Game (Board *pBoard, Pieces *pPieces, int pScreenHeight)
 
 /*
 ======================================
-Get a random int between to integers
+Get a random int between two integers
 
 Parameters:
 >> pA: First number
@@ -84,7 +84,7 @@ Parameters:
 >> pX: Horizontal position in blocks
 >> pY: Vertical position in blocks
 >> pPiece: Piece to draw
->> pRotation: 1 of the 4 possible rotations
+>> pRotation: 1 of 4 possible rotations
 ======================================
 */
 void Game::DrawPiece (int pX, int pY, int pPiece, int pRotation)
