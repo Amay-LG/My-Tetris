@@ -9,6 +9,14 @@
 Graphics * Graphics::sInstance = NULL;
 bool Graphics::sInitialized = false;
 
+/*
+======================================
+Applies a color to the Renderer for drawing on the screen
+
+Parameters:
+>> color: color to be applied to renderer
+======================================
+*/
 Uint32 Graphics::SetColor(color color){
     switch(color) {
         case (BLACK):{
@@ -39,6 +47,11 @@ Uint32 Graphics::SetColor(color color){
     return -1;
 }
 
+/*
+======================================
+Creates a new instance of Graphics
+======================================
+*/
 Graphics * Graphics::Instance() {
     if(sInstance == NULL){
         sInstance = new Graphics();
@@ -47,21 +60,41 @@ Graphics * Graphics::Instance() {
     return sInstance;
 }
 
+/*
+======================================
+Destroys current instance of Graphics
+======================================
+*/
 void Graphics::Release(){
     delete sInstance;
     sInstance = NULL;
     sInitialized = false;
 }
 
+/*
+======================================
+Returns true if Graphics is initialized, false otherwise
+======================================
+*/
 bool Graphics::Initialized() {
     return sInitialized;
 }
 
+/*
+======================================
+Constructor for Graphics
+======================================
+*/
 Graphics::Graphics() {
     mPreWindow = NULL;
     sInitialized = Init();
 }
 
+/*
+======================================
+Destructor for Graphics
+======================================
+*/
 Graphics::~Graphics() {
     SDL_DestroyWindow(mWindow);
     mWindow = NULL;
@@ -69,6 +102,11 @@ Graphics::~Graphics() {
     SDL_Quit;
 }
 
+/*
+======================================
+Initializes new window and surface (called preWindow)
+======================================
+*/
 bool Graphics::Init() {
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
         printf("SDL Initialization Error: %s\n", SDL_GetError());
@@ -87,10 +125,26 @@ bool Graphics::Init() {
     return true;
 }
 
+/*
+======================================
+Updates window with preWindow (the surface for the current window)
+======================================
+*/
 void Graphics::UpdateScreen(){
     SDL_UpdateWindowSurface(mWindow);
 }
+/*
+======================================
+Draws a rectangle onto the window with the specified location and color
 
+Parameters:
+>> x1: x-position of top left corner of rectangle 
+>> y1: y-position of top left corner of rectangle
+>> x2: x-position of bottom right corner of rectangle
+>> y2: y-position of bottom right corner of rectangle
+>> color: color of the rectangle
+======================================
+*/
 void Graphics::DrawRectangle(int x1, int y1, int x2, int y2, color color){
 
     SDL_Rect rect;
@@ -103,12 +157,20 @@ void Graphics::DrawRectangle(int x1, int y1, int x2, int y2, color color){
 
     SDL_FillRect(mPreWindow, &rect, colorVal);
 }
-
+/*
+======================================
+Clears preWindow by setting prewindow to all black
+======================================
+*/
 void Graphics::ClearScreen(){
     Uint32 colorVal = SetColor(BLACK);
     SDL_FillRect(mPreWindow, NULL, colorVal);
 }
-
+/*
+======================================
+Gets key input from user
+======================================
+*/
 int Graphics::Pollkey(){
     SDL_Event event;
 	while ( SDL_PollEvent(&event) ) 
@@ -122,7 +184,14 @@ int Graphics::Pollkey(){
 	}
 	return -1;
 }
+/*
+======================================
+Checks if a certain key is pressed
 
+Parameters:
+>> pKey: checks if this key is pressed
+======================================
+*/
 int Graphics::IsKeyDown (int pKey)
 {
 	const Uint8* mKeytable;
@@ -131,7 +200,11 @@ int Graphics::IsKeyDown (int pKey)
 	mKeytable = SDL_GetKeyboardState(&mNumkeys);
 	return mKeytable[pKey];
 }
-
+/*
+======================================
+Returns the current key being pressed
+======================================
+*/
 int Graphics::Getkey()
 {
 	SDL_Event event;
@@ -145,7 +218,11 @@ int Graphics::Getkey()
 	};
 	return event.key.keysym.sym;
 }
-
+/*
+======================================
+Return height of screen
+======================================
+*/
 int Graphics::GetScreenHeight(){
     return SCREEN_HEIGHT;
 }
