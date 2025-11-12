@@ -1,3 +1,10 @@
+/*****************************************************************************************
+* File: Timer.cpp
+* Desc: Timer object for handling visuals and frames
+* 
+* Author - Amay Lokesh Galappa
+*
+*****************************************************************************************/
 #ifndef _TIMER_H
 #define _TIMER_H
 #include <SDL.h>
