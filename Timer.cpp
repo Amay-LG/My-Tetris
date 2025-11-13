@@ -1,6 +1,6 @@
 /*****************************************************************************************
 * File: Timer.cpp
-* Desc: Timer object for handling visuals and frames
+* Desc: Timer object for handling framerate
 * 
 * Author - Amay Lokesh Galappa
 *
